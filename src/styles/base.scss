@@ -1,0 +1,1079 @@
+@import './transition.scss';
+@import './svgicon.scss';
+@import './element-ui.scss';
+body {
+    font-size: 14px;
+    height: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+html {
+    height: 100%;
+}
+
+#app {
+    height: 100%;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+a,
+a:focus,
+a:hover {
+    color: inherit;
+    outline: none;
+    text-decoration: none;
+}
+
+.ke-a {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}
+
+div:focus {
+    outline: none;
+}
+
+.clearfix {
+    @include clearfix;
+}
+
+.el-button--medium {
+    padding: 10px 15px!important;
+}
+
+.el-button--medium svg {
+    margin-right: 5px;
+}
+
+.app-container {
+    padding: 20px;
+}
+
+.ke-body {
+    margin: 10px;
+    padding: 15px;
+    background: #fff;
+    border-radius: 4px;
+}
+
+.ke-search {
+    margin-bottom: 15px;
+    .el-form-item {
+        margin-bottom: 0px;
+    }
+    .label {
+        height: 36px;
+        line-height: 36px;
+        text-align: center;
+    }
+    .buttons {
+        padding-left: 12px!important;
+        text-align: left;
+    }
+    text-align: center;
+    .el-row {
+        max-width: 1160px;
+        margin: 0 auto;
+    }
+}
+
+.ke-search>.el-row {
+    margin-bottom: 15px;
+}
+
+.ke-search-right {
+    margin-bottom: 15px;
+    >label {
+        margin-right: 10px;
+    }
+    .el-button {
+        margin-left: 10px;
+    }
+    .el-select,
+    .el-input,
+    .el-cascader,
+    .el-autocomplete {
+        width: 160px!important;
+    }
+}
+
+.ke-buttons {
+    margin-bottom: 15px;
+}
+
+.ke-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ke-page {
+    margin-top: 15px;
+    float: right;
+}
+
+.ke-clear {
+    clear: both;
+}
+
+.ke-center {
+    text-align: center!important;
+    .el-form-item__label {
+        text-align: center;
+        padding-left: 12px;
+    }
+}
+
+.ke-form {
+    padding: 0 10px 0 0;
+}
+
+.padding-0 {
+    padding: 0;
+}
+
+.svg-icon {
+    width: 1em;
+    height: 1em;
+}
+
+.ke-search-buttons {
+    text-align: right;
+    padding-top: 10px;
+}
+
+.ke-popover-button {
+    margin: 0 10px;
+}
+
+.ke-popover-center {
+    padding: 0;
+}
+
+.el-select,
+.el-cascader,
+.el-date-editor,
+.el-autocomplete {
+    width: 100%!important;
+}
+
+section aside.ke-body+main.ke-body,
+section aside.ke-body+section.ke-layout-body {
+    margin-left: 0;
+}
+
+section.ke-layout-body+aside.ke-body {
+    margin-left: 0;
+}
+
+section main.ke-body+aside.ke-body {
+    margin-left: 0;
+}
+
+.ke-module {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border-radius: 4px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.ke-float-left {
+    float: left;
+}
+
+.ke-float-right {
+    float: right;
+}
+
+.ke-layout {
+    height: 100%;
+    .ke-layout-main {
+        padding: 0;
+    }
+    .ke-layout-container {
+        height: 100%;
+        >header,
+        >main,
+        >footer {
+            padding: 0px;
+        }
+    }
+    .ke-layout-body {
+        padding: 15PX;
+        background: #fff;
+        margin: 10px;
+        border-radius: 4px;
+        >header,
+        >main,
+        >footer,
+        >aside {
+            padding: 0px;
+        }
+    }
+}
+
+.el-button [class*="el-icon-"]+span {
+    margin-left: 0;
+}
+
+.ke-no-data {
+    height: 34px;
+    line-height: 34px;
+    color: #cfcece;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.el-table__fixed,
+.el-table__fixed-right {
+    z-index: 1;
+}
+
+.viewer-in {
+    z-index: 999999!important;
+}
+
+
+/** 表单 **/
+
+.kd-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    border: #eee 1px solid;
+}
+
+.kd-table-none {
+    border: 0px;
+}
+
+.kd-table td,
+.kd-table th {
+    height: 32px;
+    padding: 10px 8px;
+    border-right: 1px solid #eee;
+}
+
+.kd-table-grid td,
+.kd-table-grid th {
+    border-right-width: 0;
+}
+
+.kd-table td:last-child {
+    border-right-width: 0;
+}
+
+.kd-table th {
+    text-align: right;
+    vertical-align: middle;
+    background: #fcfcfc;
+    font-weight: 200;
+}
+
+.kd-table td {
+    text-align: left;
+    word-break: break-all;
+}
+
+.kd-table .kd-table-left {
+    background: #fcfcfc;
+    border-right: 1px solid #c3c2c2;
+}
+
+.kd-form-table .kd-table-node,
+.kd-table .kd-table-node {
+    vertical-align: middle;
+    height: 70px;
+}
+
+.kd-table tr {
+    border-bottom: 1px solid #eee;
+}
+
+.kd-table .kd-table-tr-none {
+    border-bottom: 0;
+}
+
+.kd-table-grid th,
+.kd-table-grid td {
+    text-align: center;
+}
+
+.kd-table-grid th {
+    /*color:#989898;*/
+    color: #000;
+}
+
+.kd-table-grid td {
+    color: #333;
+}
+
+.kd-table-grid tbody tr:nth-child(even) {
+    background: #f5fafe;
+}
+
+.ke-dialog-footer {
+    padding-top: 0;
+    text-align: right;
+}
+
+.ke-title {
+    color: #4a5460;
+    font-size: 14px;
+    font-weight: bold;
+    height: 35px;
+    line-height: 35px;
+    padding: 0 10px;
+    text-align: left;
+}
+
+.ke-dialog-el-main {
+    padding: 15px;
+    border: 1px solid #EBEEF5;
+    border-radius: 4px;
+}
+
+.ke-scrollbar {
+    >div {
+        overflow-x: hidden;
+    }
+}
+
+//滚动条的宽度
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+//滚动条的滑块
+::-webkit-scrollbar-thumb {
+    background-color: #babbc0;
+    border-radius: 3px;
+}
+
+.el-carousel__button {
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+}
+
+.black {
+    color: #000!important
+}
+
+.blue {
+    color: #00f!important
+}
+
+.blueviolet {
+    color: #8a2be2!important
+}
+
+.brown {
+    color: #a52a2a!important
+}
+
+.burlywood {
+    color: #deb887!important
+}
+
+.cadetblue {
+    color: #5f9ea0!important
+}
+
+.chocolate {
+    color: #d2691e!important
+}
+
+.coral {
+    color: #ff7f50!important
+}
+
+.cornflowerblue {
+    color: #6495ed!important
+}
+
+.crimson {
+    color: #dc143c!important
+}
+
+.cyan {
+    color: #0ff!important
+}
+
+.darkblue {
+    color: #00008b!important
+}
+
+.darkcyan {
+    color: #008b8b!important
+}
+
+.darkgoldenrod {
+    color: #b8860b!important
+}
+
+.darkgray {
+    color: #a9a9a9!important
+}
+
+.darkgreen {
+    color: #006400!important
+}
+
+.darkkhaki {
+    color: #bdb76b!important
+}
+
+.darkmagenta {
+    color: #8b008b!important
+}
+
+.darkolivegreen {
+    color: #556b2f!important
+}
+
+.darkorange {
+    color: #ff8c00!important
+}
+
+.darksalmon {
+    color: #e9967a!important
+}
+
+.darkseagreen {
+    color: #8fbc8f!important
+}
+
+.darkslategray {
+    color: #2f4f4f!important
+}
+
+.darkturquoise {
+    color: #00ced1!important
+}
+
+.deeppink {
+    color: #ff1493!important
+}
+
+.deepskyblue {
+    color: #00bfff!important
+}
+
+.dimgray {
+    color: #696969!important
+}
+
+.dodgerblue {
+    color: #1e90ff!important
+}
+
+.feldspar {
+    color: #d19275!important
+}
+
+.firebrick {
+    color: #b22222!important
+}
+
+.forestgreen {
+    color: #228b22!important
+}
+
+.fuchsia {
+    color: #f0f!important
+}
+
+.gold {
+    color: #ffd700!important
+}
+
+.goldenrod {
+    color: #daa520!important
+}
+
+.gray {
+    color: #808080!important
+}
+
+.green {
+    color: #008000!important
+}
+
+.hotpink {
+    color: #ff69b4!important
+}
+
+.indianred {
+    color: #cd5c5c!important
+}
+
+.indigo {
+    color: #4b0082!important
+}
+
+.lightblue {
+    color: #add8e6!important
+}
+
+.lightcoral {
+    color: #f08080!important
+}
+
+.lightgrey {
+    color: #d3d3d3!important
+}
+
+.lightgreen {
+    color: #90ee90!important
+}
+
+.lightsalmon {
+    color: #ffa07a!important
+}
+
+.lightseagreen {
+    color: #20b2aa!important
+}
+
+.lightskyblue {
+    color: #87cefa!important
+}
+
+.lightslateblue {
+    color: #8470ff!important
+}
+
+.lightsteelblue {
+    color: #b0c4de!important
+}
+
+.lime {
+    color: #0f0!important
+}
+
+.limegreen {
+    color: #32cd32!important
+}
+
+.mediumaquamarine {
+    color: #66cdaa!important
+}
+
+.mediumblue {
+    color: #0000cd!important
+}
+
+.mediumorchid {
+    color: #ba55d3!important
+}
+
+.mediumpurple {
+    color: #9370d8!important
+}
+
+.mediumseagreen {
+    color: #3cb371!important
+}
+
+.mediumslateblue {
+    color: #7b68ee!important
+}
+
+.mediumspringgreen {
+    color: #00fa9a!important
+}
+
+.mediumturquoise {
+    color: #48d1cc!important
+}
+
+.midnightblue {
+    color: #191970!important
+}
+
+.navy {
+    color: #000080!important
+}
+
+.olive {
+    color: #808000!important
+}
+
+.olivedrab {
+    color: #6b8e23!important
+}
+
+.orange {
+    color: #ffa500!important
+}
+
+.orangered {
+    color: #ff4500!important
+}
+
+.orchid {
+    color: #da70d6!important
+}
+
+.palevioletred {
+    color: #d87093!important
+}
+
+.peru {
+    color: #cd853f!important
+}
+
+.plum {
+    color: #dda0dd!important
+}
+
+.powderblue {
+    color: #b0e0e6!important
+}
+
+.purple {
+    color: #800080!important
+}
+
+.red {
+    color: #f00!important
+}
+
+.rosybrown {
+    color: #bc8f8f!important
+}
+
+.royalblue {
+    color: #4169e1!important
+}
+
+.salmon {
+    color: #fa8072!important
+}
+
+.sandybrown {
+    color: #f4a460!important
+}
+
+.seagreen {
+    color: #2e8b57!important
+}
+
+.silver {
+    color: #c0c0c0!important
+}
+
+.skyblue {
+    color: #87ceeb!important
+}
+
+.slateblue {
+    color: #6a5acd!important
+}
+
+.slategray {
+    color: #708090!important
+}
+
+.steelblue {
+    color: #4682b4!important
+}
+
+.tan {
+    color: #d2b48c!important
+}
+
+.teal {
+    color: #008080!important
+}
+
+.thistle {
+    color: #d8bfd8!important
+}
+
+.tomato {
+    color: #ff6347!important
+}
+
+.violet {
+    color: #ee82ee!important
+}
+
+.violetred {
+    color: #d02090!important
+}
+
+.yellowgreen {
+    color: #9acd32!important
+}
+
+.black-bg {
+    background: #000!important
+}
+
+.blue-bg {
+    background: #00f!important
+}
+
+.blueviolet-bg {
+    background: #8a2be2!important
+}
+
+.brown-bg {
+    background: #a52a2a!important
+}
+
+.burlywood-bg {
+    background: #deb887!important
+}
+
+.cadetblue-bg {
+    background: #5f9ea0!important
+}
+
+.chocolate-bg {
+    background: #d2691e!important
+}
+
+.coral-bg {
+    background: #ff7f50!important
+}
+
+.cornflowerblue-bg {
+    background: #6495ed!important
+}
+
+.crimson-bg {
+    background: #dc143c!important
+}
+
+.cyan-bg {
+    background: #0ff!important
+}
+
+.darkblue-bg {
+    background: #00008b!important
+}
+
+.darkcyan-bg {
+    background: #008b8b!important
+}
+
+.darkgoldenrod-bg {
+    background: #b8860b!important
+}
+
+.darkgray-bg {
+    background: #a9a9a9!important
+}
+
+.darkgreen-bg {
+    background: #006400!important
+}
+
+.darkkhaki-bg {
+    background: #bdb76b!important
+}
+
+.darkmagenta-bg {
+    background: #8b008b!important
+}
+
+.darkolivegreen-bg {
+    background: #556b2f!important
+}
+
+.darkorange-bg {
+    background: #ff8c00!important
+}
+
+.darksalmon-bg {
+    background: #e9967a!important
+}
+
+.darkseagreen-bg {
+    background: #8fbc8f!important
+}
+
+.darkslategray-bg {
+    background: #2f4f4f!important
+}
+
+.darkturquoise-bg {
+    background: #00ced1!important
+}
+
+.deeppink-bg {
+    background: #ff1493!important
+}
+
+.deepskyblue-bg {
+    background: #00bfff!important
+}
+
+.dimgray-bg {
+    background: #696969!important
+}
+
+.dodgerblue-bg {
+    background: #1e90ff!important
+}
+
+.feldspar-bg {
+    background: #d19275!important
+}
+
+.firebrick-bg {
+    background: #b22222!important
+}
+
+.forestgreen-bg {
+    background: #228b22!important
+}
+
+.fuchsia-bg {
+    background: #f0f!important
+}
+
+.gold-bg {
+    background: #ffd700!important
+}
+
+.goldenrod-bg {
+    background: #daa520!important
+}
+
+.gray-bg {
+    background: #808080!important
+}
+
+.green-bg {
+    background: #008000!important
+}
+
+.hotpink-bg {
+    background: #ff69b4!important
+}
+
+.indianred-bg {
+    background: #cd5c5c!important
+}
+
+.indigo-bg {
+    background: #4b0082!important
+}
+
+.lightblue-bg {
+    background: #add8e6!important
+}
+
+.lightcoral-bg {
+    background: #f08080!important
+}
+
+.lightgrey-bg {
+    background: #d3d3d3!important
+}
+
+.lightgreen-bg {
+    background: #90ee90!important
+}
+
+.lightsalmon-bg {
+    background: #ffa07a!important
+}
+
+.lightseagreen-bg {
+    background: #20b2aa!important
+}
+
+.lightskyblue-bg {
+    background: #87cefa!important
+}
+
+.lightslateblue-bg {
+    background: #8470ff!important
+}
+
+.lightsteelblue-bg {
+    background: #b0c4de!important
+}
+
+.lime-bg {
+    background: #0f0!important
+}
+
+.limegreen-bg {
+    background: #32cd32!important
+}
+
+.mediumaquamarine-bg {
+    background: #66cdaa!important
+}
+
+.mediumblue-bg {
+    background: #0000cd!important
+}
+
+.mediumorchid-bg {
+    background: #ba55d3!important
+}
+
+.mediumpurple-bg {
+    background: #9370d8!important
+}
+
+.mediumseagreen-bg {
+    background: #3cb371!important
+}
+
+.mediumslateblue-bg {
+    background: #7b68ee!important
+}
+
+.mediumspringgreen-bg {
+    background: #00fa9a!important
+}
+
+.mediumturquoise-bg {
+    background: #48d1cc!important
+}
+
+.midnightblue-bg {
+    background: #191970!important
+}
+
+.navy-bg {
+    background: #000080!important
+}
+
+.olive-bg {
+    background: #808000!important
+}
+
+.olivedrab-bg {
+    background: #6b8e23!important
+}
+
+.orange-bg {
+    background: #ffa500!important
+}
+
+.orangered-bg {
+    background: #ff4500!important
+}
+
+.orchid-bg {
+    background: #da70d6!important
+}
+
+.palevioletred-bg {
+    background: #d87093!important
+}
+
+.peru-bg {
+    background: #cd853f!important
+}
+
+.plum-bg {
+    background: #dda0dd!important
+}
+
+.powderblue-bg {
+    background: #b0e0e6!important
+}
+
+.purple-bg {
+    background: #800080!important
+}
+
+.red-bg {
+    background: #f00!important
+}
+
+.rosybrown-bg {
+    background: #bc8f8f!important
+}
+
+.royalblue-bg {
+    background: #4169e1!important
+}
+
+.salmon-bg {
+    background: #fa8072!important
+}
+
+.sandybrown-bg {
+    background: #f4a460!important
+}
+
+.seagreen-bg {
+    background: #2e8b57!important
+}
+
+.silver-bg {
+    background: #c0c0c0!important
+}
+
+.skyblue-bg {
+    background: #87ceeb!important
+}
+
+.slateblue-bg {
+    background: #6a5acd!important
+}
+
+.slategray-bg {
+    background: #708090!important
+}
+
+.steelblue-bg {
+    background: #4682b4!important
+}
+
+.tan-bg {
+    background: #d2b48c!important
+}
+
+.teal-bg {
+    background: #008080!important
+}
+
+.thistle-bg {
+    background: #d8bfd8!important
+}
+
+.tomato-bg {
+    background: #ff6347!important
+}
+
+.violet-bg {
+    background: #ee82ee!important
+}
+
+.violetred-bg {
+    background: #d02090!important
+}
+
+.yellowgreen-bg {
+    background: #9acd32!important
+}

@@ -1,0 +1,14 @@
+<div ng-controller="KisBpmBooleanPropertyCtrl">
+    <input type="checkbox" ng-model="property.value"
+           ng-change="changeValue()"
+           ng-if="property.key != 'oryx-defaultflow'"/>
+
+    <!--  默认跳线从checkbox改成下拉列表-->
+    <select ng-model="property.selectValue"
+            ng-change="changeValue()"
+            class="form-control"
+            ng-if="property.key == 'oryx-defaultflow'">
+        <option value="standard">标准</option>
+        <option value="default">默认</option>
+    </select>
+</div>

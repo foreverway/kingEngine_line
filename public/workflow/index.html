@@ -1,0 +1,25 @@
+<!DOCTYPE html><html lang="en"><head><link rel="stylesheet" href="./umi.623a7077.css"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Cache-Control" content="no-cache"><meta http-equiv="Expires" content="0"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><title>Work Flow</title><link rel="icon" href="/favicon.png" type="image/x-icon"><!-- data-set.min.js用于图表渲染，如无需求，没有必要引进 --><!-- <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.9.6/dist/data-set.min.js"></script> --><script type="text/javascript">/**/
+    /*
+     *生产环境下，提供以下配置：
+     * 1.后端请求路径baseUrl；
+     * 1.前端页面跳转路径frontUrl,优先级：手动配置>自动获取；
+     * 2.报表查看页面是否显示错误具体消息showReportErrorMsg：默认为false，表示只显示错误码，不显示具体错误消息，true表示都显示
+    */
+    window.platform_config = {
+      baseUrl: sessionStorage.getItem('baseURL'),
+      frontUrl: "",
+      showReportErrorMsg: false,
+    };
+    /**/
+    /*版本信息*/
+    version = '1.0.0_20200106'
+    /**/
+    /**/
+
+    //frontUrl加目录
+    //window.platform_config.frontUrl = 'http://' + window.location.host + '/KEUMServer/';
+
+    //从缓存读取baseUrl
+    // window.platform_config.baseUrl = window.sessionStorage.getItem('baseURL');
+    /**/
+    /**/</script><script>window.routerBase = "/";</script></head><body><noscript>Sorry, we need js to run correctly!</noscript><div id="root"></div><script src="./umi.53544613.js"></script></body></html>

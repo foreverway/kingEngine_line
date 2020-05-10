@@ -1,0 +1,5 @@
+<div class="complex-span">
+    <span ng-if="property.value">{{property.value|limitTo:20}}</span>
+    <span ng-if="!property.noValue && property.value != null && property.value.length > 20">...</span>
+    <span ng-if="!property.value">{{'PROPERTY.SEQUENCEFLOW.CONDITION.NO-CONDITION-DISPLAY' | translate}}</span>
+</div>

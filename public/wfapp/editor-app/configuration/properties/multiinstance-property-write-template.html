@@ -1,0 +1,10 @@
+
+<div ng-controller="KisBpmMultiInstanceCtrl">
+    <select ng-model="property.value"
+            ng-change="multiInstanceChanged()"
+            ng-options="opt.key as opt.value for opt in property.selectOptions"
+            ng-selected="opt.key"
+            class="form-control"
+    >
+    </select>
+</div>

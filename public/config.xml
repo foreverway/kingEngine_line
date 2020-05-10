@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<configuration>
+    <!-- 开发人员电脑 -->
+    <when clientIP="localhost" port="8085">
+       <!--<WebService>http://10.202.61.67:10010/KDUMServer/</WebService>-->
+       <WebService>http://192.168.200.137:9090/KDUMServer/</WebService>
+        <GisService>http://t{0-4}.tianditu.com/DataServer?T=vec_w&amp;x={x}&amp;y={y}&amp;l={z}&amp;tk=ac7457c812448c070e125a1488f3051c</GisService>
+    </when>
+    <!-- 测试地址  https://tourtest.future-mxxz.com/Future/swagger-ui.html#-->
+    <when clientIP="10.201.61.67" port="10020">
+        <WebService>http://10.202.61.67:10010/KDUMServer/</WebService>
+    </when>
+
+    <!-- 生产环境正式系统配置 https://tourrweb.future-mxxz.com/Future/swagger-ui.html# -->
+    <when clientIP="https://tourweb.future-mxxz.com" port="">
+        <WebService>https://tourweb.future-mxxz.com/Future</WebService>
+    </when>
+</configuration>

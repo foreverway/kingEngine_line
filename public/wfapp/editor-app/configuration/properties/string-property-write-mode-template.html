@@ -1,0 +1,13 @@
+
+<div ng-controller="KisBpmStringPropertyCtrl">
+    <input type="text" ng-model="property.value"
+           ng-disabled="property.disabled"
+    	   class="form-control"
+           ng-blur="inputBlurred()"
+           ng-keypress="enterPressed($event)"
+           placeholder="{{property.inputTip}}"
+           title="{{property.inputTip}}"
+    />
+    <div class="input-tip" ng-if="valid.length">{{valid}}</div>
+</div>
+<!-- auto-focus  去掉自动聚焦，切换节点的时候属性会自动保存-->

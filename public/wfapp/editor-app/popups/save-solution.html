@@ -1,0 +1,26 @@
+
+<div class="modal" ng-controller="SaveSolutionCtrl">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h2>{{'SOLUTION.SAVE.TITLE' | translate}}</h2>
+        </div>
+        <div class="modal-body" style="font-size: 14px">
+        	你确定要保存流程方案吗？
+        </div>
+        <div class="modal-footer" ng-controller="SaveModelCtrl">
+        
+        	<div class="pull-right">
+            	<button type="button" class="btn btn-default" ng-click="close()" ng-disabled="status.loading" translate>ACTION.CANCEL</button>
+            	<button class="btn btn-primary confirm" ng-click="save()" ng-disabled="status.loading" ng-show="!error" translate>ACTION.SAVE</button>
+            </div>
+        
+            <div class="pull-right popup-error" ng-if="error && !error.isConflict">
+                <span>{{'MODEL.SAVE.ERROR' | translate}}</span>
+            </div>
+        
+        	<loading></loading>
+        
+        </div>
+    </div>
+</div>

@@ -1,0 +1,141 @@
+<div class="modal" ng-controller="KisBpmTablePropertyPopupCtrl">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close close-button" data-dismiss="modal" aria-hidden="true" ng-click="close()">&times;
+                </button>
+                <h2>{{title}}</h2>
+            </div>
+            <div class="modal-body" style="padding: 0">
+                <!--回显错误信息-->
+                <div ng-show="fetchError" class="alert alert-warning alert-dismissible" role="alert"
+                     style="margin-bottom: 0">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <strong>Error!</strong> {{fetchError}}
+                </div>
+                <div class="table-responsive table-content" ng-show="tableListDataCopy">
+                    <!--搜索-->
+                    <div class="row">
+                        <div class="col-sm-6"></div>
+                        <div class="col-sm-6">
+                            <div class="input-group search-input">
+                                <input type="text" class="form-control" placeholder="输入关键字搜索" ng-model="searchText"
+                                       ng-keypress="enterPressed($event)">
+                                <span class="input-group-addon glyphicon glyphicon-search input-button"
+                                      ng-click="searchTable()">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-bordered table-hover search-table">
+                        <thead>
+                        <tr>
+                            <th><input ng-if="type === 'checkbox'" type="checkbox" name="selectAllRow"
+                                       ng-model="$parent.selectAllRow" ng-change="selectAllRowClick()">
+                            </th>
+                            <th ng-repeat="column in columns" ng-click="sortClick(column,sort)">
+                                {{column.title}}
+                                <img src="editor-app/images/asc.png"
+                                     ng-if="sort.dataIndex===column.dataIndex&&sort.order==='asc'"/>
+                                <img src="editor-app/images/desc.png"
+                                     ng-if="sort.dataIndex===column.dataIndex&&sort.order==='desc'"/>
+                                <img src="editor-app/images/sort.png"
+                                     ng-if="sort.dataIndex!==column.dataIndex||(sort.order!=='asc'&&sort.order!=='desc')"/>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="row in dataSource" ng-click="trClick(row[rowKey])">
+                            <!--<th>{{ $index + 1 }}</th>-->
+                            <td ng-if="type === 'radio'">
+                                <input type="radio" name="selectedRowKeys" value="{{row[rowKey]}}"
+                                       ng-change="selectedRowKeysClick(row[rowKey])"
+                                       ng-model="$parent.$parent.selectedRowKeys">
+                            </td>
+                            <!--
+                                checkbox用法参考：
+                                    http://embed.plnkr.co/g0NMG4rmF4uwzoG2uZhf/preview
+                                    http://embed.plnkr.co/PXpGyS3mPNvlEfjPodOl/preview
+                            -->
+                            <td ng-if="type === 'checkbox'">
+                                <input type="checkbox" name="selectedRowKeys" value="{{row[rowKey]}}"
+                                       ng-checked="$parent.$parent.selectedRowKeys.indexOf(row[rowKey]) > -1"
+                                       ng-click="selectedRowKeysClick(row[rowKey]);$event.stopPropagation();"
+                                >
+                                <!--ng-change="selectedRowKeysChanged()"-->
+                                <!--ng-model="$parent.selectedRowKeys"-->
+                            </td>
+                            <td ng-repeat="column in columns">
+                                <!--{{column.render?column.render(row[column.dataIndex]):row[column.dataIndex]}}-->
+                                <span ng-bind-html="column.render?column.render(row[column.dataIndex]):row[column.dataIndex].toString()"></span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <!--ng-if指令会改变scope，可以使用ng-show，或者在变量前加$perent-->
+                    <div class="row" ng-if="total>0">
+                        <div class="col-sm-9">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination" style="margin: 0;float: right">
+                                    <li class="{{curPage===1 ? 'disabled' : ''}}">
+                                        <a href="#" aria-label="Previous"
+                                           ng-click="curPage>1&&pageChanged(curPage-1)">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="{{curPage===1 ? 'active' : ''}}">
+                                        <a href="#" ng-click="curPage!==1&&pageChanged(1)">1</a>
+                                    </li>
+                                    <!--<li ng-if="curPage>=pageShowSize&&(total/pageSize|ceil)>pageShowSize">-->
+                                    <li ng-if="leftEllipsis">
+                                        <a href="#" aria-label="省略号">
+                                            <span aria-hidden="true">...</span>
+                                        </a>
+                                    </li>
+
+                                    <!--配合new Array(number)使用-->
+                                    <!--<li ng-repeat="i in getArray((total/pageSize|ceil)) track by $index"></li>-->
+                                    <li ng-repeat="i in getArray()" class="{{curPage===i ? 'active' : ''}}">
+                                        <a href="#" ng-click="curPage!==i&&pageChanged(i)">{{i}}</a>
+                                    </li>
+
+                                    <!--<li ng-if="curPage<=(total/pageSize|ceil)-pageShowSize&&(total/pageSize|ceil)>pageShowSize">-->
+                                    <li ng-if="rightEllipsis">
+                                        <a href="#" aria-label="省略号">
+                                            <span aria-hidden="true">...</span>
+                                        </a>
+                                    </li>
+                                    <li ng-if="(total/pageSize|ceil)>1"
+                                        class="{{curPage===(total/pageSize|ceil) ? 'active' : ''}}">
+                                        <a href="#"
+                                           ng-click="curPage!==(total/pageSize|ceil)&&pageChanged((total/pageSize|ceil))">{{(total/pageSize|ceil)}}</a>
+                                    </li>
+                                    <li class="{{curPage===Math.ceil(total/pageSize) ? 'disabled' : ''}}">
+                                        <a href="#" aria-label="Next"
+                                           ng-click="curPage<Math.ceil(total/pageSize)&&pageChanged(curPage+1)">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <div class="col-sm-3 per-page-button">
+                            <select class="form-control input-sm" ng-model="$parent.pageSize"
+                                    ng-change="pageSizeOptionsChanged()"
+                                    ng-options="page as (page + ' 条/页') for page in pageSizeOptions">
+                                <!--<option ng-repeat="page in pageSizeOptions" value="{{page}}">{{page}}</option>-->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button ng-click="cancel()" class="btn btn-default cancel" translate>ACTION.CANCEL</button>
+                <button ng-click="save()" class="btn btn-primary confirm" translate>ACTION.SAVE</button>
+            </div>
+        </div>
+    </div>
+</div>

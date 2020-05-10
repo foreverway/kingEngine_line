@@ -1,0 +1,32 @@
+{
+  "center": [108.345478,21.614631],
+  "extent": [108.307884,21.594761,108.389938,21.655879],
+  "marker":{
+    "src": "img/map/marker.png",
+    "size": [32,50]
+  },
+  "layers": [
+    {
+      "vec": { 
+        "name": "天地矢量底图",
+        "url": "http://t{0-4}.tianditu.com/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=ac7457c812448c070e125a1488f3051c",
+        "visible": true
+      },
+      "cva": { 
+        "name": "天地矢量文字",
+        "url": "http://t{0-4}.tianditu.com/DataServer?T=cva_w&x={x}&y={y}&l={z}&tk=ac7457c812448c070e125a1488f3051c",
+        "visible": true
+      },
+      "img": {
+        "name": "天地影像底图",
+        "url": "http://t{0-4}.tianditu.com/DataServer?T=img_w&x={x}&y={y}&l={z}&tk=ac7457c812448c070e125a1488f3051c",
+        "visible": true
+      },
+      "cia": { 
+        "name": "天地影像底图",
+        "url": "http://t{0-4}.tianditu.com/DataServer?T=cia_w&x={x}&y={y}&l={z}&tk=ac7457c812448c070e125a1488f3051c",
+        "visible": true
+      }
+    }
+  ]
+}

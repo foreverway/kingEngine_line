@@ -1,0 +1,1573 @@
+{
+  "title" : "流程编辑器",
+  "namespace" : "http://b3mn.org/stencilset/bpmn2.0#",
+  "description" : "BPMN流程编辑器",
+  "propertyPackages" : [ {
+    "name" : "process_idpackage",
+    "properties" : [ {
+      "id" : "process_id",
+      "type" : "String",
+      "title" : "流程唯一标识",
+      "value" : "",
+      "description" : "流程定义唯一的标识",
+      "popular" : true,
+      "group": 1,
+      "inputTip": "1到20位字符"
+    } ]
+  }, {
+    "name" : "overrideidpackage",
+    "properties" : [ {
+      "id" : "overrideid",
+      "type" : "String",
+      "title" : "ID",
+      "value" : "",
+      "description" : "元素的唯一标识",
+      "popular" : true,
+      "group": 1
+    } ]
+  }, {
+    "name" : "namepackage",
+    "properties" : [ {
+      "id" : "name",
+      "type" : "String",
+      "title" : "名称",
+      "value" : "",
+      "description" : "BPMN元素的描述名称.",
+      "popular" : true,
+      "refToView" : "text_name",
+      "group": 1,
+      "inputTip": "1到20个字符",
+      "valid": {
+        "required": {
+          "errInfo": "字段不能为空"
+        },
+        "reg": {
+          "exp": "^.{1,20}$",
+          "errInfo": "字段长度为1到20"
+        }
+      }
+    } ]
+  }, {
+    "name" : "global_add_index_package",
+    "properties" : [ {
+      "id" : "global_add_index",
+      "type" : "Boolean",
+      "title" : "添加业务索引",
+      "value" : "false",
+      "description" : "是否添加业务索引数据",
+      "popular" : true,
+      "toolTip": "是否添加业务索引数据",
+      "group": 3
+    } ]
+  }, {
+    "name" : "global_custom_key_package",
+    "properties" : [ {
+      "id" : "global_custom_key",
+      "type" : "String",
+      "title" : "自定义key",
+      "value" : "",
+      "description" : "业务索引数据的自定义key",
+      "popular" : true,
+      "toolTip": "业务索引数据的自定义key，多个key以英文逗号分隔",
+      "group": 3
+    } ]
+  }, {
+    "name" : "global_form_package",
+    "properties" : [ {
+      "id" : "global_form",
+      "type" : "Table",
+      "title" : "全局默认表单",
+      "value" : "",
+      "description" : "全局默认表单",
+      "popular" : true,
+      "group": 3
+    } ]
+  }, {
+    "name" : "global_finish_task_package",
+    "properties" : [ {
+      "id" : "global_finish_task",
+      "type" : "Boolean",
+      "title" : "完成首个用户任务",
+      "value" : "false",
+      "description" : "完成首个用户任务",
+      "popular" : true,
+      "group": 3
+    } ]
+  }, {
+    "name" : "global_start_callback_package",
+    "properties" : [ {
+      "id" : "global_start_callback",
+      "type" : "kisbpm-multiinstance",
+      "title" : "启动回调接口",
+      "value" : "",
+      "description" : "流程启动回调接口（全局配置）",
+      "popular" : true,
+      "group": 3,
+      "toolTip": "流程启动回调接口"
+    } ]
+  },{
+    "name" : "global_run_callback_package",
+    "properties" : [ {
+      "id" : "global_run_callback",
+      "type" : "kisbpm-multiinstance",
+      "title" : "运行时回调接口",
+      "value" : "",
+      "description" : "流程运行过程中结点扭转的回调接口（全局配置）",
+      "popular" : true,
+      "group": 3,
+      "toolTip": "流程运行过程中结点扭转的默认回调接口"
+    } ]
+  },{
+    "name" : "global_end_callback_package",
+    "properties" : [ {
+      "id" : "global_end_callback",
+      "type" : "kisbpm-multiinstance",
+      "title" : "结束回调接口",
+      "value" : "",
+      "description" : "流程结束回调接口（全局配置）",
+      "popular" : true,
+      "group": 3,
+      "toolTip": "流程结束回调接口"
+    } ]
+  },{
+    "name" : "documentationpackage",
+    "properties" : [ {
+      "id" : "documentation",
+      "type" : "String",
+      "title" : "说明",
+      "value" : "",
+      "description" : "BPMN元素的描述名称.",
+      "popular" : true,
+      "group": 1,
+      "inputTip": "1到200个字符"
+    } ]
+  }, {
+    "name" : "process_authorpackage",
+    "properties" : [ {
+      "id" : "process_author",
+      "type" : "String",
+      "title" : "流程作者",
+      "value" : "",
+      "description" : "流程定义的作者",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "process_versionpackage",
+    "properties" : [ {
+      "id" : "process_version",
+      "type" : "String",
+      "title" : "流程版本字符串(仅限于文档)",
+      "value" : "",
+      "description" : "文档的目的为版本标识",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "process_namespacepackage",
+    "properties" : [ {
+      "id" : "process_namespace",
+      "type" : "String",
+      "title" : "目标命名空间",
+      "value" : "",
+      "description" : "流程定义的目标命名空间.",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "asynchronousdefinitionpackage",
+    "properties" : [ {
+      "id" : "asynchronousdefinition",
+      "type" : "Boolean",
+      "title" : "异步",
+      "value" : "false",
+      "description" : "定义异步的活动.",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "exclusivedefinitionpackage",
+    "properties" : [ {
+      "id" : "exclusivedefinition",
+      "type" : "Boolean",
+      "title" : "排它性",
+      "value" : "false",
+      "description" : "定义排它的活动.",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "executionlistenerspackage",
+    "properties" : [ {
+      "id" : "executionlisteners",
+      "type" : "multiplecomplex",
+      "title" : "执行监听器",
+      "value" : "",
+      "description" : "活动、流程、流程跳转，开始、结事事件的监听器",
+      "popular" : true,
+      "group": 1
+    } ]
+  }, {
+    "name" : "tasklistenerspackage",
+    "properties" : [ {
+      "id" : "tasklisteners",
+      "type" : "multiplecomplex",
+      "title" : "任务监听器",
+      "value" : "",
+      "description" : "人工任务的监听器",
+      "popular" : true,
+      "group": 1
+    } ]
+  }, {
+    "name" : "prelistenerpackage",
+    "properties" : [ {
+      "id" : "prelistener",
+      "type" : "kisbpm-multiinstance",
+      "title" : "前置监听",
+      "value" : "",
+      "popular" : true,
+      "group": 1,
+      "toolTip": "继承TaskPreListener的spring beanId"
+    } ]
+  }, {
+    "name" : "postlistenerpackage",
+    "properties" : [ {
+      "id" : "postlistener",
+      "type" : "kisbpm-multiinstance",
+      "title" : "后置监听",
+      "value" : "",
+      "popular" : true,
+      "group": 1,
+      "toolTip": "继承TaskAfterListener的spring beanId"
+    } ]
+  }, {
+    "name" : "eventlistenerspackage",
+    "properties" : [ {
+      "id" : "eventlisteners",
+      "type" : "multiplecomplex",
+      "title" : "事件监听器",
+      "value" : "",
+      "description" : "监听Activiti引擎的任何发生的事件. 同样可能是任何抛出的信号、信息、出错的事件。",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "usertaskassignmentpackage",
+    "properties" : [ {
+      "id" : "usertaskassignment",
+      "type" : "Complex",
+      "title" : "完成人",
+      "value" : "",
+      "description" : "人工任务的派遣的定义",
+      "popular" : true,
+      "group": 1
+    } ]
+  }, {
+    "name" : "formpropertiespackage",
+    "properties" : [ {
+      "id" : "formproperties",
+      "type" : "Complex",
+      "title" : "表单属性",
+      "value" : "",
+      "description" : "定义带有属性列表的表单",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "formkeydefinitionpackage",
+    "properties" : [ {
+      "id" : "formkeydefinition",
+      "type" : "Table",
+      "title" : "表单标识",
+      "value" : "",
+      "description" : "表单的Key(指向定义的Form).",
+      "popular" : true,
+      "group": 1
+    } ]
+  }, {
+    "name" : "timeoutpackage",
+    "properties" : [ {
+      "id" : "timeout",
+      "type" : "Boolean",
+      "title" : "超时处理",
+      "value" : false,
+      "description" : "设置超时处理",
+      "popular" : true,
+      "group": 1,
+      "toolTip": "新建一个超时处理的任务监听器"
+    } ]
+  }, {
+    "name" : "timeouthandlerpackage",
+    "properties" : [ {
+      "id" : "timeouthandler",
+      "type" : "Complex",
+      "title" : "设置超时",
+      "value" : "",
+      "description" : "设置超时处理",
+      "popular" : true,
+      "group": 1,
+      "toolTip": "设置超时处理信息"
+    } ]
+  }, {
+    "name" : "duedatedefinitionpackage",
+    "properties" : [ {
+      "id" : "duedatedefinition",
+      "type" : "String",
+      "title" : "到期的日期",
+      "value" : "",
+      "description" : "人工任务的到期日期",
+      "popular" : true,
+      "group": 1
+    } ]
+  }, {
+    "name" : "prioritydefinitionpackage",
+    "properties" : [ {
+      "id" : "prioritydefinition",
+      "type" : "String",
+      "title" : "优先级",
+      "value" : "",
+      "description" : "人工任务的优先级.",
+      "popular" : true,
+      "group": 1,
+      "inputTip": "1-100的整数",
+      "valid":{
+        "reg": {
+          "exp": "^(1|([1-9]\\d{0,1})|100|\\s*)$",
+          "errInfo": "请输入1-100的整数"
+        }
+      }
+    } ]
+  }, {
+    "name" : "expressiontypepackage",
+    "properties" : [ {
+      "id" : "expressiontype",
+      "type" : "kisbpm-multiinstance",
+      "title" : "实现类型",
+      "value" : "servicetaskexpression",
+      "description" : "选择不同的实现类型",
+      "popular" : true,
+      "group": 1,
+      "selectOptions": [
+        {
+          "key": "servicetaskexpression",
+          "value": "表达式"
+        },
+        {
+          "key": "servicetaskclass",
+          "value": "类名"
+        },
+        {
+          "key": "servicetaskdelegateexpression",
+          "value": "代理的表达式"
+        }
+      ],
+      "hideProperties": {
+        "servicetaskexpression": ["servicetaskclass", "servicetaskdelegateexpression"],
+        "servicetaskclass": ["servicetaskexpression", "servicetaskdelegateexpression"],
+        "servicetaskdelegateexpression": ["servicetaskclass", "servicetaskexpression"]
+      }
+    } ]
+  },{
+    "name" : "servicetaskclasspackage",
+    "properties" : [ {
+      "id" : "servicetaskclass",
+      "type" : "String",
+      "title" : "类名",
+      "value" : "",
+      "description" : "实现服务任务逻辑的类.",
+      "popular" : true,
+      "group": 1,
+      "valid": {
+        "required": {
+          "errInfo": "字段不能为空"
+        }
+      }
+    } ]
+  }, {
+    "name" : "servicetaskexpressionpackage",
+    "properties" : [ {
+      "id" : "servicetaskexpression",
+      "type" : "String",
+      "title" : "表达式",
+      "value" : "",
+      "description" : "定义服务任务逻辑的表达式.",
+      "popular" : true,
+      "group": 1,
+      "valid": {
+        "required": {
+          "errInfo": "字段不能为空"
+        }
+      }
+    } ]
+  }, {
+    "name" : "servicetaskdelegateexpressionpackage",
+    "properties" : [ {
+      "id" : "servicetaskdelegateexpression",
+      "type" : "String",
+      "title" : "代理的表达式",
+      "value" : "",
+      "description" : "通过代理表达式定义任务服务逻辑",
+      "popular" : true,
+      "group": 1,
+      "valid": {
+        "required": {
+          "errInfo": "字段不能为空"
+        }
+      }
+    } ]
+  }, {
+    "name" : "servicetaskfieldspackage",
+    "properties" : [ {
+      "id" : "servicetaskfields",
+      "type" : "Complex",
+      "title" : "类的字段",
+      "value" : "",
+      "description" : "字段扩展",
+      "popular" : true,
+      "group": 1
+    } ]
+  }, {
+    "name" : "ccpackage",
+    "properties" : [ {
+      "id" : "cc",
+      "type" : "kisbpm-multiinstance",
+      "title" : "抄送",
+      "value" : "",
+      "popular" : true,
+      "group": 2,
+      "selectOptions": [
+        {
+          "key": "",
+          "value": "不允许"
+        },
+        {
+          "key": "True",
+          "value": "允许"
+        }
+      ]
+    } ]
+  }, {
+    "name" : "handoverpackage",
+    "properties" : [ {
+      "id" : "handover",
+      "type" : "kisbpm-multiinstance",
+      "title" : "移交",
+      "value" : "",
+      "popular" : true,
+      "group": 2,
+      "selectOptions": [
+        {
+          "key": "",
+          "value": "不允许"
+        },
+        {
+          "key": "True",
+          "value": "允许"
+        }
+      ]
+    } ]
+  }, {
+    "name" : "rollbackpackage",
+    "properties" : [ {
+      "id" : "rollback",
+      "type" : "kisbpm-multiinstance",
+      "title" : "退回",
+      "value" : "",
+      "popular" : true,
+      "group": 2,
+      "selectOptions": [
+        {
+          "key": "",
+          "value": "不允许"
+        },
+        {
+          "key": "rollback2last",
+          "value": "退回到上个节点"
+        },
+        {
+          "key": "rollback2InputActivity",
+          "value": "退回到自定义节点"
+        }
+      ]
+    } ]
+  }, {
+    "name" : "assistpackage",
+    "properties" : [ {
+      "id" : "assist",
+      "type" : "kisbpm-multiinstance",
+      "title" : "协助",
+      "value" : "",
+      "popular" : true,
+      "group": 2,
+      "selectOptions": [
+        {
+          "key": "",
+          "value": "不允许"
+        },
+        {
+          "key": "parallelAssist",
+          "value": "不等待办继续执行"
+        },
+        {
+          "key": "serialAssist",
+          "value": "等待待办再执行"
+        }
+      ]
+    } ]
+  }, {
+    "name" : "rejectpackage",
+    "properties" : [ {
+      "id" : "reject",
+      "type" : "kisbpm-multiinstance",
+      "title" : "驳回",
+      "value" : "",
+      "popular" : true,
+      "group": 2,
+      "selectOptions": [
+        {
+          "key": "",
+          "value": "不允许"
+        },
+        {
+          "key": "submitInOrder",
+          "value": "重新按顺序走流程"
+        },
+        {
+          "key": "submit2OriginActivity",
+          "value": "跳转到驳回节点"
+        },
+        {
+          "key": "submit2InputActivity",
+          "value": "自定义跳转节点"
+        }
+      ],
+      "toolTip": "选择驳回到开始节点后的跳转节点"
+    } ]
+  }, {
+    "name" : "countersignpackage",
+    "properties" : [ {
+      "id" : "countersign",
+      "type" : "kisbpm-multiinstance",
+      "title" : "会签",
+      "value" : "",
+      "popular" : true,
+      "group": 2,
+      "selectOptions": [
+        {
+          "key": "",
+          "value": "不允许"
+        },
+        {
+          "key": "oneVoteNo",
+          "value": "一票否决"
+        },
+        {
+          "key": "0Point5",
+          "value": " 少数服从多数"
+        }
+      ]
+    } ]
+  },{
+    "name" : "revoke_package",
+    "properties" : [ {
+      "id" : "revoke",
+      "type" : "kisbpm-multiinstance",
+      "title" : "撤回",
+      "value" : "",
+      "description" : "撤回",
+      "popular" : true,
+      "group": 2,
+      "selectOptions": [
+        {
+          "key": "",
+          "value": "不允许"
+        },
+        {
+          "key": "True",
+          "value": "允许"
+        }
+      ]
+    } ]
+  },{
+    "name" : "biz_node_run_callback_package",
+    "properties" : [ {
+      "id" : "biz_node_run_callback",
+      "type" : "kisbpm-multiinstance",
+      "title" : "运行时回调接口",
+      "value" : "",
+      "description" : "流程运行过程中结点扭转的回调接口",
+      "popular" : true,
+      "group": 2,
+      "toolTip": "流程运行过程中结点扭转的回调接口"
+    } ]
+  }, {
+    "name" : "servicetaskresultvariablepackage",
+    "properties" : [ {
+      "id" : "servicetaskresultvariable",
+      "type" : "String",
+      "title" : "结果值变量",
+      "value" : "",
+      "description" : "流程变量存储服务任务的执行结果.",
+      "popular" : true,
+      "group": 1
+    } ]
+  }, {
+    "name" : "scriptformatpackage",
+    "properties" : [ {
+      "id" : "scriptformat",
+      "type" : "String",
+      "title" : "脚本格式",
+      "value" : "",
+      "description" : "脚本任务的脚本格式化.",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "scripttextpackage",
+    "properties" : [ {
+      "id" : "scripttext",
+      "type" : "Text",
+      "title" : "脚本",
+      "value" : "",
+      "description" : "脚本任务的脚本内容.",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "ruletask_rulespackage",
+    "properties" : [ {
+      "id" : "ruletask_rules",
+      "type" : "String",
+      "title" : "规则",
+      "value" : "",
+      "description" : "规则任务的规则.",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "ruletask_variables_inputpackage",
+    "properties" : [ {
+      "id" : "ruletask_variables_input",
+      "type" : "String",
+      "title" : "输入变量",
+      "value" : "",
+      "description" : "规则任务的输入变量.",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "ruletask_excludepackage",
+    "properties" : [ {
+      "id" : "ruletask_exclude",
+      "type" : "Boolean",
+      "title" : "排除",
+      "value" : "false",
+      "description" : "使用作为排它性的规则属性",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "ruletask_resultpackage",
+    "properties" : [ {
+      "id" : "ruletask_result",
+      "type" : "String",
+      "title" : "结果变量",
+      "value" : "",
+      "description" : "规则任务的结果变量",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "mailtasktopackage",
+    "properties" : [ {
+      "id" : "mailtaskto",
+      "type" : "Text",
+      "title" : "发往",
+      "value" : "",
+      "description" : "接收者，格式为邮件。多个接收者请用逗号分割的列表来定义 ",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "mailtaskfrompackage",
+    "properties" : [ {
+      "id" : "mailtaskfrom",
+      "type" : "Text",
+      "title" : "来自",
+      "value" : "",
+      "description" : "发送者的邮箱.若不提供，默认将使用配置中的来源地址.",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "mailtasksubjectpackage",
+    "properties" : [ {
+      "id" : "mailtasksubject",
+      "type" : "Text",
+      "title" : "标题",
+      "value" : "",
+      "description" : "Email中的标题.",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "mailtaskccpackage",
+    "properties" : [ {
+      "id" : "mailtaskcc",
+      "type" : "Text",
+      "title" : "抄送",
+      "value" : "",
+      "description" : "抄送的Email地址，多个接收者请用逗号分隔开。",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "mailtaskbccpackage",
+    "properties" : [ {
+      "id" : "mailtaskbcc",
+      "type" : "Text",
+      "title" : "暗抄送",
+      "value" : "",
+      "description" : "暗抄送的Email地址. 多个接收者请用逗号分隔开",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "mailtasktextpackage",
+    "properties" : [ {
+      "id" : "mailtasktext",
+      "type" : "Text",
+      "title" : "内容",
+      "value" : "",
+      "description" : "Email中的内容, 案例一需要发送纯文件的邮件. 可使用Html格式的邮件进行发送，若邮件的接收的客户端不支持这种格式，客户端可转为纯文本的邮件",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "mailtaskhtmlpackage",
+    "properties" : [ {
+      "id" : "mailtaskhtml",
+      "type" : "Text",
+      "title" : "Html",
+      "value" : "",
+      "description" : "HTML中的一片段作为邮件的内容.",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "mailtaskcharsetpackage",
+    "properties" : [ {
+      "id" : "mailtaskcharset",
+      "type" : "String",
+      "title" : "字符类型",
+      "value" : "",
+      "description" : "对于很多非英语语言来说，允许更改邮件的编码设置是必要的 ",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "callactivitycalledelementpackage",
+    "properties" : [ {
+      "id" : "callactivitycalledelement",
+      "type" : "String",
+      "title" : "调用元素",
+      "value" : "",
+      "description" : "流程引用.",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "callactivityinparameterspackage",
+    "properties" : [ {
+      "id" : "callactivityinparameters",
+      "type" : "Complex",
+      "title" : "输入参数",
+      "value" : "",
+      "description" : "定义输入参数",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "callactivityoutparameterspackage",
+    "properties" : [ {
+      "id" : "callactivityoutparameters",
+      "type" : "Complex",
+      "title" : "输出参数",
+      "value" : "",
+      "description" : "输出参数的定义",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "cameltaskcamelcontextpackage",
+    "properties" : [ {
+      "id" : "cameltaskcamelcontext",
+      "type" : "String",
+      "title" : "Camel 上下文",
+      "value" : "",
+      "description" : "可选的Camel 上下文定义,若为空，则使用系统缺省的.",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "muletaskendpointurlpackage",
+    "properties" : [ {
+      "id" : "muletaskendpointurl",
+      "type" : "String",
+      "title" : "端点URL",
+      "value" : "",
+      "description" : "发送消息到Mule的必须的端点URL",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "muletasklanguagepackage",
+    "properties" : [ {
+      "id" : "muletasklanguage",
+      "type" : "String",
+      "title" : "语言",
+      "value" : "",
+      "description" : "必须的语言定义来解析装载的表达式，如JUEL.",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "muletaskpayloadexpressionpackage",
+    "properties" : [ {
+      "id" : "muletaskpayloadexpression",
+      "type" : "String",
+      "title" : "装载的表达式",
+      "value" : "",
+      "description" : "发送至Mule的必须执行的消息定义",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "muletaskresultvariablepackage",
+    "properties" : [ {
+      "id" : "muletaskresultvariable",
+      "type" : "String",
+      "title" : "结果的变量",
+      "value" : "",
+      "description" : "可选的装载返回的结果的变量",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "conditionsequenceflowpackage",
+    "properties" : [ {
+      "id" : "conditionsequenceflow",
+      "type" : "Complex",
+      "title" : "跳转条件",
+      "value" : "",
+      "description" : "流程跳线的条件定义",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "defaultflowpackage",
+    "properties" : [ {
+      "id" : "defaultflow",
+      "type" : "Boolean",
+      "title" : "默认跳线",
+      "value" : "false",
+      "description" : "定义默认为顺序跳转",
+      "popular" : true,
+      "refToView" : "default"
+    } ]
+  }, {
+    "name" : "conditionalflowpackage",
+    "properties" : [ {
+      "id" : "conditionalflow",
+      "type" : "Boolean",
+      "title" : "条件的跳线",
+      "value" : "false",
+      "description" : "定义条件的跳线",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "timercycledefinitionpackage",
+    "properties" : [ {
+      "id" : "timercycledefinition",
+      "type" : "String",
+      "title" : "时间周期1",
+      "value" : "",
+      "description" : "定义ISO-8601时间周期.",
+      "popular" : true,
+      "group": 1,
+      "toolTip": "定义ISO-8601时间周期(e.g. R3/PT10H)"
+    } ]
+  }, {
+    "name" : "timerdatedefinitionpackage",
+    "properties" : [ {
+      "id" : "timerdatedefinition",
+      "type" : "String",
+      "title" : "时间周期2",
+      "value" : "",
+      "description" : "定义(ISO-8601格式标准)的定时器.",
+      "popular" : true,
+      "group": 1,
+      "toolTip": "定义ISO-8601格式标准的定时器"
+    } ]
+  }, {
+    "name" : "timerdurationdefinitionpackage",
+    "properties" : [ {
+      "id" : "timerdurationdefinition",
+      "type" : "String",
+      "title" : "持续的时间",
+      "value" : "",
+      "description" : "定义(ISO-8601)持续的定时器",
+      "popular" : true,
+      "group": 1,
+      "toolTip": "定义ISO-8601持续的定时器(e.g. PT5M)"
+    } ]
+  }, {
+    "name" : "timerenddatedefinitionpackage",
+    "properties" : [ {
+      "id" : "timerenddatedefinition",
+      "type" : "String",
+      "title" : "结束的时间格式",
+      "value" : "",
+      "description" : "定义带(ISO-8601 duration)定时器.",
+      "popular" : true,
+      "group": 1,
+      "toolTip": "定义带ISO-8601 duration定时器"
+    } ]
+  }, {
+    "name" : "messagerefpackage",
+    "properties" : [ {
+      "id" : "messageref",
+      "type" : "String",
+      "title" : "消息引用",
+      "value" : "",
+      "description" : "Define the message name.",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "signalrefpackage",
+    "properties" : [ {
+      "id" : "signalref",
+      "type" : "String",
+      "title" : "信号引用",
+      "value" : "",
+      "description" : "定义信号的名称.",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "errorrefpackage",
+    "properties" : [ {
+      "id" : "errorref",
+      "type" : "String",
+      "title" : "错误引用",
+      "value" : "",
+      "description" : "定义错误.",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "cancelactivitypackage",
+    "properties" : [ {
+      "id" : "cancelactivity",
+      "type" : "Boolean",
+      "title" : "取消的活动",
+      "value" : "true",
+      "description" : "活动允许取消",
+      "popular" : true,
+      "refToView" : [ "frame", "frame2" ],
+      "group": 1
+    } ]
+  }, {
+    "name" : "initiatorpackage",
+    "properties" : [ {
+      "id" : "initiator",
+      "type" : "String",
+      "title" : "初始化器",
+      "value" : "",
+      "description" : "流程定义的初始初始化器",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "textpackage",
+    "properties" : [ {
+      "id" : "text",
+      "type" : "String",
+      "title" : "Text",
+      "value" : "",
+      "description" : "文本注释",
+      "popular" : true,
+      "refToView" : "text"
+    } ]
+  }, {
+    "name" : "custom_configpackage",
+    "properties" : [ {
+      "id" : "custom_config",
+      "type" : "String",
+      "title" : "自定义配置",
+      "value" : "",
+      "description" : "自定义配置",
+      "popular" : true,
+      "refToView" : "text",
+      "toolTip": "增加想保存在节点中的额外数据"
+    } ]
+  }, {
+    "name" : "multiinstance_typepackage",
+    "properties" : [ {
+      "id" : "multiinstance_type",
+      "type" : "kisbpm-multiinstance",
+      "title" : "多实例类型",
+      "value" : "None",
+      "description" : "通过不同的循环类型，重复的活动执行(并行、串行)可显示",
+      "popular" : true,
+      "refToView" : "multiinstance",
+      "selectOptions": [
+        {
+          "key": "None",
+          "value": "无"
+        },
+        {
+          "key": "Parallel",
+          "value": "并行"
+        },
+        {
+          "key": "Sequential",
+          "value": "串行"
+        }
+      ],
+      "hideProperties": {
+        "None": ["multiinstance_cardinality", "multiinstance_collection", "multiinstance_variable", "multiinstance_condition"]
+      }
+    } ]
+  }, {
+    "name" : "multiinstance_cardinalitypackage",
+    "properties" : [ {
+      "id" : "multiinstance_cardinality",
+      "type" : "String",
+      "title" : "基数",
+      "value" : "",
+      "description" : "定义多实例的基数.",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "multiinstance_collectionpackage",
+    "properties" : [ {
+      "id" : "multiinstance_collection",
+      "type" : "String",
+      "title" : "集合",
+      "value" : "",
+      "description" : "定义多实例的集合.",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "multiinstance_variablepackage",
+    "properties" : [ {
+      "id" : "multiinstance_variable",
+      "type" : "String",
+      "title" : "元素的变量",
+      "value" : "",
+      "description" : "为多实例定义变量元素",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "multiinstance_conditionpackage",
+    "properties" : [ {
+      "id" : "multiinstance_condition",
+      "type" : "String",
+      "title" : "完成条件",
+      "value" : "",
+      "description" : "定义多实例的完成条件.",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "isforcompensationpackage",
+    "properties" : [ {
+      "id" : "isforcompensation",
+      "type" : "Boolean",
+      "title" : "作为修正",
+      "value" : "false",
+      "description" : "标识当前活动为修正执行活动。",
+      "popular" : true,
+      "refToView" : "compensation"
+    } ]
+  }, {
+    "name" : "sequencefloworderpackage",
+    "properties" : [ {
+      "id" : "sequencefloworder",
+      "type" : "Complex",
+      "title" : "流程顺序",
+      "value" : "",
+      "description" : "流程跳出线的顺序",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "signaldefinitionspackage",
+    "properties" : [ {
+      "id" : "signaldefinitions",
+      "type" : "multiplecomplex",
+      "title" : "信号定义",
+      "value" : "",
+      "description" : "信号定义",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "messagedefinitionspackage",
+    "properties" : [ {
+      "id" : "messagedefinitions",
+      "type" : "multiplecomplex",
+      "title" : "消息定义",
+      "value" : "",
+      "description" : "消息定义",
+      "popular" : true
+    } ]
+  }, {
+    "name" : "istransactionpackage",
+    "properties" : [ {
+      "id" : "istransaction",
+      "type" : "Boolean",
+      "title" : "作为子流程的事务",
+      "value" : "false",
+      "description" : "标识子流程作为事务类型",
+      "popular" : true,
+      "refToView" : "border"
+    } ]
+  } ],
+  "stencils" : [ {
+    "type" : "node",
+    "id" : "BPMNDiagram",
+    "title" : "BPMN流程图",
+    "description" : "BPMN2的流程图.",
+    "view" : "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n<svg\n   xmlns=\"http://www.w3.org/2000/svg\"\n   xmlns:svg=\"http://www.w3.org/2000/svg\"\n   xmlns:oryx=\"http://www.b3mn.org/oryx\"\n   xmlns:xlink=\"http://www.w3.org/1999/xlink\"\n   width=\"800\"\n   height=\"600\"\n   version=\"1.0\">\n  <defs></defs>\n  <g pointer-events=\"fill\" >\n    <polygon stroke=\"black\" fill=\"black\" stroke-width=\"1\" points=\"0,0 0,590 9,599 799,599 799,9 790,0\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" />\n    <rect id=\"diagramcanvas\" oryx:resize=\"vertical horizontal\" x=\"0\" y=\"0\" width=\"790\" height=\"590\" stroke=\"black\" stroke-width=\"2\" fill=\"white\" />\n    \t<text font-size=\"22\" id=\"diagramtext\" x=\"400\" y=\"25\" oryx:align=\"top center\" stroke=\"#373e48\"></text>\n  </g>\n</svg>",
+    "icon" : "diagram.png",
+    "groups" : [ "Diagram" ],
+    "mayBeRoot" : true,
+    "hide" : true,
+    "propertyPackages" : [ "process_idpackage", "namepackage", "global_form_package","global_finish_task_package","global_add_index_package","global_custom_key_package","global_task_listener_package","global_delay_data_package","global_countersign_package", "global_start_callback_package","global_run_callback_package","global_end_callback_package","global_other_callback_package","process_authorpackage" ],
+    "hiddenPropertyPackages" : [ "documentationpackage", "process_versionpackage", "process_namespacepackage", "executionlistenerspackage", "eventlistenerspackage", "signaldefinitionspackage", "messagedefinitionspackage" ],
+    "roles" : [ ]
+  }, {
+    "type" : "node",
+    "id" : "StartNoneEvent",
+    "title" : "开始事件",
+    "description" : "无特定触发器的开始事件",
+    "view" : "startEvent.svg",
+    "icon" : "startevent/none.png",
+    "groups" : [ "事件" ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage", "executionlistenerspackage", "initiatorpackage" ],
+    "hiddenPropertyPackages" : [ "documentationpackage", "formkeydefinitionpackage", "formpropertiespackage" ],
+    "roles" : [ "sequence_start", "Startevents_all", "StartEventsMorph", "all" ]
+  }, {
+    "type" : "node",
+    "id" : "EndNoneEvent",
+    "title" : "结束事件",
+    "description" : "无特定触发器的结束事件",
+    "view" : "endEvent.svg",
+    "icon" : "endevent/none.png",
+    "groups" : [ "事件" ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage", "documentationpackage", "executionlistenerspackage" ],
+    "hiddenPropertyPackages" : [ ],
+    "roles" : [ "EndEventsMorph", "sequence_end", "all" ]
+  }, {
+    "type" : "node",
+    "id" : "UserTask",
+    "title" : "人工任务",
+    "description" : "指派给特定人来执行的人工任务",
+    "view" : "userTask.svg",
+    "icon" : "activity/list/type.user.png",
+    "groups" : [ "活动" ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage", "custom_configpackage","multiinstance_typepackage", "multiinstance_cardinalitypackage", "multiinstance_collectionpackage", "multiinstance_variablepackage", "multiinstance_conditionpackage", "usertaskassignmentpackage", "formkeydefinitionpackage", "timeoutpackage", "timeouthandlerpackage", "duedatedefinitionpackage", "tasklistenerspackage", "prioritydefinitionpackage", "prelistenerpackage", "postlistenerpackage", "ccpackage", "handoverpackage", "rollbackpackage", "assistpackage", "rejectpackage", "countersignpackage","revoke_package","biz_node_run_callback_package"],
+    "hiddenPropertyPackages" : [ "documentationpackage", "asynchronousdefinitionpackage", "exclusivedefinitionpackage", "executionlistenerspackage", "documentationpackage", "isforcompensationpackage", "prioritydefinitionpackage" ],
+    "roles" : [ "Activity", "sequence_start", "sequence_end", "ActivitiesMorph", "all" ]
+  }, {
+    "type" : "node",
+    "id" : "ServiceTask",
+    "title" : "服务任务",
+    "description" : "带有服务逻辑的自动任务",
+    "view" : "serviceTask.svg",
+    "icon" : "activity/list/type.service.png",
+    "groups" : [ "活动" ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage", "executionlistenerspackage", "multiinstance_typepackage", "multiinstance_cardinalitypackage", "multiinstance_collectionpackage", "multiinstance_variablepackage", "multiinstance_conditionpackage", "expressiontypepackage","servicetaskclasspackage", "servicetaskexpressionpackage", "servicetaskdelegateexpressionpackage", "servicetaskfieldspackage", "servicetaskresultvariablepackage" ],
+    "hiddenPropertyPackages" : [ "documentationpackage", "asynchronousdefinitionpackage", "exclusivedefinitionpackage", "isforcompensationpackage" ],
+    "roles" : [ "Activity", "sequence_start", "sequence_end", "ActivitiesMorph", "all" ]
+  }, {
+    "type" : "node",
+    "id" : "ReceiveTask",
+    "title" : "接收任务",
+    "description" : "等待接收信号来触发的任务",
+    "view" : "receiveTask.svg",
+    "icon" : "activity/list/type.receive.png",
+    "groups" : [ "活动" ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage", "executionlistenerspackage", "multiinstance_typepackage", "multiinstance_cardinalitypackage", "multiinstance_collectionpackage", "multiinstance_variablepackage", "multiinstance_conditionpackage" ],
+    "hiddenPropertyPackages" : [ "documentationpackage", "asynchronousdefinitionpackage", "exclusivedefinitionpackage", "isforcompensationpackage" ],
+    "roles" : [ "Activity", "sequence_start", "sequence_end", "ActivitiesMorph", "all" ]
+  }, {
+    "type" : "node",
+    "id" : "SubProcess",
+    "title" : "子流程",
+    "description" : "子流程范围的流程",
+    "view" : "subProcess.svg",
+    "icon" : "activity/expanded.subprocess.png",
+    "groups" : [ "结构模块" ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage", "documentationpackage", "asynchronousdefinitionpackage", "exclusivedefinitionpackage", "executionlistenerspackage", "multiinstance_typepackage", "multiinstance_cardinalitypackage", "multiinstance_collectionpackage", "multiinstance_variablepackage", "multiinstance_conditionpackage", "istransactionpackage" ],
+    "hiddenPropertyPackages" : [ ],
+    "roles" : [ "Activity", "sequence_start", "sequence_end", "all" ]
+  }, {
+    "type" : "node",
+    "id" : "EventSubProcess",
+    "title" : "子流程的事件",
+    "description" : "子流程范围的事件",
+    "view" : "eventSubProcess.svg",
+    "icon" : "activity/event.subprocess.png",
+    "groups" : [ "结构模块" ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage", "documentationpackage", "asynchronousdefinitionpackage", "exclusivedefinitionpackage", "executionlistenerspackage" ],
+    "hiddenPropertyPackages" : [ ],
+    "roles" : [ "Activity", "all" ]
+  }, {
+    "type" : "node",
+    "id" : "CallActivity",
+    "title" : "调用活动",
+    "description" : "调用的活动",
+    "view" : "callActivity.svg",
+    "icon" : "activity/task.png",
+    "groups" : [ "结构模块" ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage", "documentationpackage", "asynchronousdefinitionpackage", "exclusivedefinitionpackage", "executionlistenerspackage", "callactivitycalledelementpackage", "callactivityinparameterspackage", "callactivityoutparameterspackage", "multiinstance_typepackage", "multiinstance_cardinalitypackage", "multiinstance_collectionpackage", "multiinstance_variablepackage", "multiinstance_conditionpackage", "isforcompensationpackage" ],
+    "hiddenPropertyPackages" : [ ],
+    "roles" : [ "Activity", "sequence_start", "sequence_end", "all" ]
+  }, {
+    "type" : "node",
+    "id" : "ExclusiveGateway",
+    "title" : "单一网关",
+    "description" : "单一选择的网关",
+    "view" : "exclusiveGateway.svg",
+    "icon" : "gateway/exclusive.databased.png",
+    "groups" : [ "网关" ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage"],
+    "hiddenPropertyPackages" : [ "documentationpackage", "asynchronousdefinitionpackage", "exclusivedefinitionpackage" , "sequencefloworderpackage" ],
+    "roles" : [ "sequence_start", "GatewaysMorph", "sequence_end", "all" ]
+  }, {
+    "type" : "node",
+    "id" : "ParallelGateway",
+    "title" : "并行网关",
+    "description" : "并行执行的网关",
+    "view" : "parallelGateway.svg",
+    "icon" : "gateway/parallel.png",
+    "groups" : [ "网关" ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage" ],
+    "hiddenPropertyPackages" : [ "documentationpackage", "asynchronousdefinitionpackage", "exclusivedefinitionpackage", "sequencefloworderpackage"  ],
+    "roles" : [ "sequence_start", "GatewaysMorph", "sequence_end", "all" ]
+  }, {
+    "type" : "node",
+    "id" : "InclusiveGateway",
+    "title" : "包含网关",
+    "description" : "满足条件的包含性的网关",
+    "view" : "inclusiveGateway.svg",
+    "icon" : "gateway/inclusive.png",
+    "groups" : [ "网关" ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage" ],
+    "hiddenPropertyPackages" : [ "documentationpackage", "asynchronousdefinitionpackage", "exclusivedefinitionpackage", "sequencefloworderpackage"  ],
+    "roles" : [ "sequence_start", "GatewaysMorph", "sequence_end", "all" ]
+  }, {
+    "type" : "node",
+    "id" : "EventGateway",
+    "title" : "事件网关",
+    "description" : "事件网关",
+    "view" : "eventGateway.svg",
+    "icon" : "gateway/eventbased.png",
+    "groups" : [ "网关" ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage" ],
+    "hiddenPropertyPackages" : [ "documentationpackage", "asynchronousdefinitionpackage", "exclusivedefinitionpackage", "sequencefloworderpackage"  ],
+    "roles" : [ "sequence_start", "GatewaysMorph", "sequence_end", "all" ]
+  }, {
+    "type" : "node",
+    "id" : "BoundaryErrorEvent",
+    "title" : "边界出错事件",
+    "description" : "捕获BPMN的错误的边界事件",
+    "view" : "boundaryErrorEvent.svg",
+    "icon" : "catching/error.png",
+    "groups" : [ "边界事件" ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage", "documentationpackage", "errorrefpackage" ],
+    "hiddenPropertyPackages" : [ ],
+    "roles" : [ "sequence_start", "BoundaryEventsMorph", "IntermediateEventOnActivityBoundary" ]
+  }, {
+    "type" : "node",
+    "id" : "BoundaryTimerEvent",
+    "title" : "边界定时事件",
+    "description" : "A boundary event with a timer trigger",
+    "view" : "boundaryTimerEvent.svg",
+    "icon" : "catching/timer.png",
+    "groups" : [ "边界事件" ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage", "documentationpackage", "timercycledefinitionpackage", "timerdatedefinitionpackage", "timerdurationdefinitionpackage", "timerenddatedefinitionpackage", "cancelactivitypackage" ],
+    "hiddenPropertyPackages" : [ ],
+    "roles" : [ "sequence_start", "BoundaryEventsMorph", "IntermediateEventOnActivityBoundary" ]
+  }, {
+    "type" : "node",
+    "id" : "BoundarySignalEvent",
+    "title" : "边界信号事件",
+    "description" : "带有事件触发器的边界事件",
+    "view" : "boundarySignalEvent.svg",
+    "icon" : "catching/signal.png",
+    "groups" : [ "边界事件" ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage", "documentationpackage", "signalrefpackage", "cancelactivitypackage" ],
+    "hiddenPropertyPackages" : [ ],
+    "roles" : [ "sequence_start", "BoundaryEventsMorph", "IntermediateEventOnActivityBoundary" ]
+  }, {
+    "type" : "node",
+    "id" : "BoundaryMessageEvent",
+    "title" : "边界消息事件",
+    "description" : "带有消息触发器的边界事件",
+    "view" : "boundaryMessageEvent.svg",
+    "icon" : "catching/message.png",
+    "groups" : [ "边界事件" ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage", "documentationpackage", "messagerefpackage", "cancelactivitypackage" ],
+    "hiddenPropertyPackages" : [ ],
+    "roles" : [ "sequence_start", "BoundaryEventsMorph", "IntermediateEventOnActivityBoundary" ]
+  }, {
+    "type" : "node",
+    "id" : "BoundaryCancelEvent",
+    "title" : "边界取消事件",
+    "description" : "边界取消事件",
+    "view" : "boundaryCancelEvent.svg",
+    "icon" : "catching/cancel.png",
+    "groups" : [ "边界事件" ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage", "documentationpackage" ],
+    "hiddenPropertyPackages" : [ ],
+    "roles" : [ "sequence_start", "BoundaryEventsMorph", "IntermediateEventOnActivityBoundary" ]
+  }, {
+    "type" : "node",
+    "id" : "BoundaryCompensationEvent",
+    "title" : "边界修正事件",
+    "description" : "边界修正事件",
+    "view" : "boundaryCompensationEvent.svg",
+    "icon" : "catching/compensation.png",
+    "groups" : [ "边界事件" ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage", "documentationpackage" ],
+    "hiddenPropertyPackages" : [ ],
+    "roles" : [ "BoundaryEventsMorph", "IntermediateEventOnActivityBoundary", "all" ]
+  }, {
+    "type" : "node",
+    "id" : "CatchTimerEvent",
+    "title" : "定时器中间捕获事件",
+    "description" : "带有捕捉定时器触发的事件",
+    "view" : "catchTimerEvent.svg",
+    "icon" : "catching/timer.png",
+    "groups" : [ "中间事件" ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage", "documentationpackage", "executionlistenerspackage", "timercycledefinitionpackage", "timerdatedefinitionpackage", "timerdurationdefinitionpackage" ],
+    "hiddenPropertyPackages" : [ ],
+    "roles" : [ "CatchEventsMorph", "sequence_start", "sequence_end", "all" ]
+  }, {
+    "type" : "node",
+    "id" : "CatchSignalEvent",
+    "title" : "信号中间捕获事件",
+    "description" : "信号触发的中间捕获事件",
+    "view" : "catchSignalEvent.svg",
+    "icon" : "catching/signal.png",
+    "groups" : [ "中间事件" ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage", "documentationpackage", "executionlistenerspackage", "signalrefpackage" ],
+    "hiddenPropertyPackages" : [ ],
+    "roles" : [ "CatchEventsMorph", "sequence_start", "sequence_end", "all" ]
+  }, {
+    "type" : "node",
+    "id" : "CatchMessageEvent",
+    "title" : "消息中间捕获事件",
+    "description" : "消息触发的中间捕获事件",
+    "view" : "catchMessageEvent.svg",
+    "icon" : "catching/message.png",
+    "groups" : [ "中间事件" ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage", "documentationpackage", "executionlistenerspackage", "messagerefpackage" ],
+    "hiddenPropertyPackages" : [ ],
+    "roles" : [ "CatchEventsMorph", "sequence_start", "sequence_end", "all" ]
+  }, {
+    "type" : "node",
+    "id" : "ThrowNoneEvent",
+    "title" : "无触发中间抛出事件",
+    "description" : "无特定触发器的中间事件",
+    "view" : "throwNoneEvent.svg",
+    "icon" : "throwing/none.png",
+    "groups" : [ "中间事件" ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage", "documentationpackage", "executionlistenerspackage" ],
+    "hiddenPropertyPackages" : [ ],
+    "roles" : [ "ThrowEventsMorph", "sequence_start", "sequence_end", "all" ]
+  }, {
+    "type" : "node",
+    "id" : "ThrowSignalEvent",
+    "title" : "信号中间抛出事件",
+    "description" : "通过信号触发器的中间事件",
+    "view" : "throwSignalEvent.svg",
+    "icon" : "throwing/signal.png",
+    "groups" : [ "中间事件" ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage", "documentationpackage", "executionlistenerspackage", "signalrefpackage" ],
+    "hiddenPropertyPackages" : [ ],
+    "roles" : [ "ThrowEventsMorph", "sequence_start", "sequence_end", "all" ]
+  }, {
+    "type" : "node",
+    "id" : "Pool",
+    "title" : "泳道",
+    "description" : "用来结构化流程定义的泳道",
+    "view" : "pool.svg",
+    "icon" : "swimlane/pool.png",
+    "groups" : [ "泳道" ],
+    "layout" : [ {
+      "type" : "layout.bpmn2_0.pool"
+    } ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage", "documentationpackage", "process_idpackage" ],
+    "hiddenPropertyPackages" : [ ],
+    "roles" : [ "canContainArtifacts", "all" ]
+  }, {
+    "type" : "edge",
+    "id" : "SequenceFlow",
+    "title" : "顺序跳转线",
+    "description" : "顺序跳转线定义了不同活动节点执行的顺序",
+    "view" : "sequenceFlow.svg",
+    "icon" : "connector/sequenceflow.png",
+    "groups" : [ "连接对象" ],
+    "layout" : [ {
+      "type" : "layout.bpmn2_0.sequenceflow"
+    } ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage", "documentationpackage", "conditionsequenceflowpackage", "executionlistenerspackage", "defaultflowpackage" ],
+    "hiddenPropertyPackages" : [ ],
+    "roles" : [ "ConnectingObjectsMorph", "all" ]
+  }, {
+    "type" : "edge",
+    "id" : "MessageFlow",
+    "title" : "消息跳转线",
+    "description" : "用来连接不同泳道中的元素的消息跳转",
+    "view" : "messageFlow.svg",
+    "icon" : "connector/messageflow.png",
+    "groups" : [ "连接对象" ],
+    "layout" : [ {
+      "type" : "layout.bpmn2_0.sequenceflow"
+    } ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage", "documentationpackage" ],
+    "hiddenPropertyPackages" : [ ],
+    "roles" : [ "ConnectingObjectsMorph", "all" ]
+  }, {
+    "type" : "edge",
+    "id" : "Association",
+    "title" : "关联说明",
+    "description" : "为元素关联文本说明",
+    "view" : "association.svg",
+    "icon" : "connector/association.undirected.png",
+    "groups" : [ "连接对象" ],
+    "layout" : [ {
+      "type" : "layout.bpmn2_0.sequenceflow"
+    } ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage", "documentationpackage" ],
+    "hiddenPropertyPackages" : [ ],
+    "roles" : [ "ConnectingObjectsMorph", "all" ]
+  }, {
+    "type" : "edge",
+    "id" : "DataAssociation",
+    "title" : "数据关联说明",
+    "description" : "为活动节点关联数据元素",
+    "view" : "dataAssociation.svg",
+    "icon" : "connector/association.unidirectional.png",
+    "groups" : [ "连接对象" ],
+    "layout" : [ {
+      "type" : "layout.bpmn2_0.sequenceflow"
+    } ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage", "documentationpackage" ],
+    "hiddenPropertyPackages" : [ ],
+    "roles" : [ "ConnectingObjectsMorph", "all" ]
+  }, {
+    "type" : "node",
+    "id" : "TextAnnotation",
+    "title" : "文本关联",
+    "description" : "关联一组元素进行文本描述",
+    "view" : "textAnnotation.svg",
+    "icon" : "artifact/text.annotation.png",
+    "groups" : [ "加工" ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage", "documentationpackage", "textpackage" ],
+    "hiddenPropertyPackages" : [ ],
+    "roles" : [ "all" ]
+  }, {
+    "type" : "node",
+    "id" : "DataStore",
+    "title" : "数据存储",
+    "description" : "引用一数据存储",
+    "view" : "dataStore.svg",
+    "icon" : "dataobject/data.store.png",
+    "groups" : [ "加工" ],
+    "propertyPackages" : [ "overrideidpackage", "namepackage", "documentationpackage" ],
+    "hiddenPropertyPackages" : [ ],
+    "roles" : [ "all" ]
+  } ],
+  "rules" : {
+    "cardinalityRules" : [ {
+      "role" : "Startevents_all",
+      "incomingEdges" : [ {
+        "role" : "SequenceFlow",
+        "maximum" : 0
+      } ]
+    }, {
+      "role" : "Endevents_all",
+      "outgoingEdges" : [ {
+        "role" : "SequenceFlow",
+        "maximum" : 0
+      } ]
+    } ],
+    "connectionRules" : [ {
+      "role" : "SequenceFlow",
+      "connects" : [ {
+        "from" : "sequence_start",
+        "to" : [ "sequence_end" ]
+      } ]
+    }, {
+      "role" : "Association",
+      "connects" : [ {
+        "from" : "sequence_start",
+        "to" : [ "TextAnnotation" ]
+      }, {
+        "from" : "sequence_end",
+        "to" : [ "TextAnnotation" ]
+      }, {
+        "from" : "TextAnnotation",
+        "to" : [ "sequence_end" ]
+      }, {
+        "from" : "BoundaryCompensationEvent",
+        "to" : [ "sequence_end" ]
+      }, {
+        "from" : "TextAnnotation",
+        "to" : [ "sequence_start" ]
+      }, {
+        "from" : "BoundaryCompensationEvent",
+        "to" : [ "sequence_start" ]
+      } ]
+    }, {
+      "role" : "DataAssociation",
+      "connects" : [ {
+        "from" : "sequence_start",
+        "to" : [ "DataStore" ]
+      }, {
+        "from" : "sequence_end",
+        "to" : [ "DataStore" ]
+      }, {
+        "from" : "DataStore",
+        "to" : [ "sequence_end" ]
+      }, {
+        "from" : "DataStore",
+        "to" : [ "sequence_start" ]
+      } ]
+    }, {
+      "role" : "IntermediateEventOnActivityBoundary",
+      "connects" : [ {
+        "from" : "Activity",
+        "to" : [ "IntermediateEventOnActivityBoundary" ]
+      } ]
+    } ],
+    "containmentRules" : [ {
+      "role" : "BPMNDiagram",
+      "contains" : [ "all" ]
+    }, {
+      "role" : "SubProcess",
+      "contains" : [ "sequence_start", "sequence_end", "from_task_event", "to_task_event", "EventSubProcess", "TextAnnotation", "DataStore" ]
+    }, {
+      "role" : "EventSubProcess",
+      "contains" : [ "sequence_start", "sequence_end", "from_task_event", "to_task_event", "TextAnnotation", "DataStore" ]
+    }, {
+      "role" : "Pool",
+      "contains" : [ "Lane" ]
+    }, {
+      "role" : "Lane",
+      "contains" : [ "sequence_start", "sequence_end", "EventSubProcess", "TextAnnotation", "DataStore" ]
+    } ],
+    "morphingRules" : [ {
+      "role" : "ActivitiesMorph",
+      "baseMorphs" : [ "UserTask" ],
+      "preserveBounds" : true
+    }, {
+      "role" : "GatewaysMorph",
+      "baseMorphs" : [ "ExclusiveGateway" ]
+    }, {
+      "role" : "StartEventsMorph",
+      "baseMorphs" : [ "StartNoneEvent" ]
+    }, {
+      "role" : "EndEventsMorph",
+      "baseMorphs" : [ "StartNoneEvent" ]
+    }, {
+      "role" : "CatchEventsMorph",
+      "baseMorphs" : [ "CatchTimerEvent" ]
+    }, {
+      "role" : "ThrowEventsMorph",
+      "baseMorphs" : [ "ThrowNoneEvent" ]
+    }, {
+      "role" : "BoundaryEventsMorph",
+      "baseMorphs" : [ "ThrowNoneEvent" ]
+    }, {
+      "role" : "BoundaryCompensationEvent",
+      "baseMorphs" : [ "BoundaryCompensationEvent" ]
+    }, {
+      "role" : "TextAnnotation",
+      "baseMorphs" : [ "TextAnnotation" ]
+    }, {
+      "role" : "DataStore",
+      "baseMorphs" : [ "DataStore" ]
+    } ]
+  }
+}

@@ -1,0 +1,148 @@
+.el-table{
+  text-align: center!important;
+  // .el-table__header-wrapper{
+  //   border-top: 2px solid #1890ff;
+  // }
+  thead{
+    color: #012F55;
+    font-weight: 600;
+    font-size: 14px;
+    tr{
+      background-color: #f2f2f2;
+      th{
+        background-color: #f2f2f2;
+      }
+    }
+  }
+}
+.el-tooltip__popper{ 
+  max-width:50%!important
+} 
+.el-dialog{
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0!important;
+}
+
+.el-form-item{
+  margin-bottom: 16px;
+}
+.el-textarea__inner{
+  padding: 5px 5px 15px 5px;
+  height: 110px;
+}
+.el-form-item__error{
+  padding-top: 2px;
+}
+.el-textarea .el-input__count{
+  color: #909399;
+  background: transparent;
+  position: absolute;
+  font-size: 12px;
+  bottom: 5px;
+  right: 20px;
+}
+
+.el-date-editor .el-range-separator{
+  width: 20px!important;
+}
+.el-dialog__body{
+  padding-top: 0;
+  padding-bottom: 16px;
+}
+
+.el-scrollbar__view{
+  height: 100%;
+}
+// 穿梭框 按钮大小 
+.el-transfer{
+  height: 100%;
+  .el-transfer__buttons{
+    .el-button--medium{
+      padding: 10px!important;
+    }
+  }
+  .el-transfer-panel{
+    width: 42.5%;
+    height: 100%;
+    .el-transfer-panel__body{
+      .el-transfer-panel__list{
+        height: 100%;
+        .el-transfer-panel__item{
+          display: block;
+        }
+      }
+      .el-checkbox-group{
+        .el-checkbox:last-of-type{
+          margin-right: 30px!important;
+        }
+      }
+    }
+  }
+}
+
+.no-list-upload{
+  display: inline-block;
+  margin-left: 10px;
+  .el-upload-list{
+    display: none!important;
+  } 
+}
+
+.el-tree{
+  .el-tree-node{
+    .el-tree-node__content{
+      .el-checkbox:last-of-type{
+        margin-right: 8px!important;
+      }
+    }
+  }
+}
+// .el-form-item--medium .el-form-item__content, .el-form-item--medium .el-form-item__label{
+//   line-height: 20px;
+// }
+// type=‘number’ 默认样式清除
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input[type="number"]{
+  -moz-appearance: textfield;
+}
+.el-tree{
+  overflow: hidden;
+}
+// .el-dialog{
+//   backface-visibility: hidden; 
+//   -webkit-backface-visibility: hidden; 
+// }
+// .el-dialog{
+//   transform: none;
+//   margin-top: 0!important;
+//   left: 0;
+//   right: 0;
+//   top: 0;
+//   bottom: 0;
+//   margin: auto;
+// }
+.el-transfer-panel{
+  width: 42.5%;
+  height: 100%;
+}
+
+.el-button [class*=el-icon-] {
+  font-size: 14px!important;
+}
+
+.ke-tab{
+  .el-tabs__content{
+    height: calc(100% - 55px);
+    .el-tab-pane{
+      height: 100%;
+      .el-container{
+        height: 100%;
+      }
+    }
+  }
+}

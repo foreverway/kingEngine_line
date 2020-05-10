@@ -1,0 +1,8 @@
+<div ng-controller="KisBpmTablePropertyCtrl">
+    <div class="input-group">
+        <input type="text" title="{{property.selectedRowNames}}" ng-model="property.selectedRowNames" ng-disabled="true"
+               class="form-control"/>
+        <span class="glyphicon glyphicon-search input-group-addon" style="top: 0" ng-click="openModal()"></span>
+    </div>
+    <div class="input-tip" ng-if="valid.length">{{valid}}</div>
+</div>
